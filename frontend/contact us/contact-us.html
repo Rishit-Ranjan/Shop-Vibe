@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ShopVibe</title>
+    <link rel="stylesheet" href="contact-us.css">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo" onclick="window.location.href='../home page/home.html'" style="cursor: pointer;">ShopVibe
+            </div>
+            <ul class="nav-links">
+                <li><a href="../home page/home.html">Home</a></li>
+                <li><a href="../products/products.html">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <h1>Contact Us</h1>
+        <p>Have questions, need support, or want to partner with us? We'd love to hear from you. Get in touch and let's
+            start a conversation.</p>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-section container">
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+            <h2>Get In Touch</h2>
+
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-content">
+                    <h3>Visit Our Office</h3>
+                    <p>123 E-Commerce Street<br>
+                        Digital District, Tech City<br>
+                        TC 12345, United States</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div class="info-content">
+                    <h3>Call Us</h3>
+                    <p><strong>Main:</strong> <a href="tel:+1234567890">+1 (234) 567-8900</a><br>
+                        <strong>Support:</strong> <a href="tel:+1234567891">+1 (234) 567-8901</a><br>
+                        <strong>Sales:</strong> <a href="tel:+1234567892">+1 (234) 567-8902</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">✉️</div>
+                <div class="info-content">
+                    <h3>Email Us</h3>
+                    <p><strong>General:</strong> <a href="mailto:hello@ShopVibe.com">hello@ShopVibe.com</a><br>
+                        <strong>Support:</strong> <a href="mailto:support@ShopVibe.com">support@ShopVibe.com</a><br>
+                        <strong>Sales:</strong> <a href="mailto:sales@ShopVibe.com">sales@ShopVibe.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">🕒</div>
+                <div class="info-content">
+                    <h3>Business Hours</h3>
+                    <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM EST<br>
+                        <strong>Saturday:</strong> 10:00 AM - 4:00 PM EST<br>
+                        <strong>Sunday:</strong> Closed<br>
+                        <em>24/7 Online Support Available</em>
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-icon">🌐</div>
+                <div class="info-content">
+                    <h3>Follow Us</h3>
+                    <p><strong>Social Media:</strong><br>
+                        <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a><br>
+                        <a href="#">Instagram</a> | <a href="#">YouTube</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form fade-in">
+            <h2>Send Us a Message</h2>
+
+            <div class="success-message" id="successMessage">
+                Thank you for your message! We'll get back to you within 24 hours.
+            </div>
+
+            <form id="contactForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error-message">Please enter your first name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error-message">Please enter your last name</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                        <div class="error-message">Please enter a valid phone number</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Please select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="sales">Sales Question</option>
+                        <option value="partnership">Partnership Opportunity</option>
+                        <option value="billing">Billing Issue</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div class="error-message">Please select a subject</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" placeholder="Tell us how we can help you..."
+                        required></textarea>
+                    <div class="error-message">Please enter your message (minimum 10 characters)</div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section container">
+        <h2>Find Us</h2>
+        <div id="map"></div>
+    </section>
+    <script src="contact-us.js"></script>
+
+</body>
+
+</html>

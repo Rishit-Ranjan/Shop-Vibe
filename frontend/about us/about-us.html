@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ShopVibe</title>
+    <link rel="stylesheet" href="about-us.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header id="navbar-placeholder"></header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <h1>About ShopVibe</h1>
+        <p>Crafting exceptional e-commerce experiences since 2018. We're passionate about connecting great products with amazing customers through innovative technology and outstanding service.</p>
+    </section>
+
+    <!-- About Section with Images & Text -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2018 by a team of passionate entrepreneurs, ShopVibe began as a simple idea: to create an e-commerce platform that puts both merchants and customers first. What started in a small garage has grown into a thriving business serving thousands of customers worldwide.</p>
+                    
+                    <p>We believe that shopping online should be more than just a transaction—it should be an experience. That's why we've built our platform with cutting-edge technology, intuitive design, and a customer-first approach that ensures every interaction is meaningful.</p>
+                    
+                    <p>Today, we're proud to be a trusted partner for businesses of all sizes, from startups to established brands, helping them reach their goals through innovative e-commerce solutions.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Our modern office space with team collaboration" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>What Makes Us Different</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Our optimized platform ensures your store loads in under 2 seconds, providing customers with a smooth shopping experience that converts.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Bank-Level Security</h3>
+                    <p>With SSL encryption, fraud protection, and PCI compliance, your customers' data is always safe and secure with our platform.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile-First Design</h3>
+                    <p>Over 70% of shopping happens on mobile. Our responsive designs ensure your store looks perfect on every device.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Smart Analytics</h3>
+                    <p>Make data-driven decisions with our comprehensive analytics dashboard that tracks everything from traffic to conversion rates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Reach</h3>
+                    <p>Sell anywhere in the world with multi-currency support, international shipping, and localized payment methods.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is always here to help, whether you need technical assistance or business guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">ShopVibe transformed our online presence completely. Within just 3 months, we saw a 150% increase in sales and our customers love the new shopping experience. The platform is incredibly user-friendly and the support team is outstanding.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>CEO, Artisan Crafts Co.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The migration from our old platform was seamless, and the results have been phenomenal. Our site speed improved dramatically, and the built-in SEO tools helped us rank higher on Google. Highly recommended for any serious e-commerce business.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MJ</div>
+                        <div class="author-info">
+                            <h4>Michael Johnson</h4>
+                            <p>Founder, TechGadget Store</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">What impressed me most was how easy it was to customize everything to match our brand. The templates are beautiful, but the flexibility to make it truly ours was amazing. Our conversion rate increased by 85% in the first quarter.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EL</div>
+                        <div class="author-info">
+                            <h4>Emily Lopez</h4>
+                            <p>Marketing Director, Fashion Forward</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The analytics and reporting features are incredibly detailed yet easy to understand. We can track every aspect of our business and make informed decisions. The ROI tracking alone has paid for the platform multiple times over.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DW</div>
+                        <div class="author-info">
+                            <h4>David Wong</h4>
+                            <p>Operations Manager, Global Electronics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../shared/nav.js"></script>
+    <script src="../shared/cart.js"></script>
+    <script>
+        createNavbar('../', 'About', getCartCountFromStorage(), getWishlistCountFromStorage());
+    </script>
+</body>
+</html>

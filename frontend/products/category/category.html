@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - ShopVibe</title>
+    <link rel="stylesheet" href="category.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ShopVibe</a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories" class="active">Categories</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-icons">
+                <div class="nav-icon" title="Search">🔍</div>
+                <div class="nav-icon" title="Wishlist">❤️</div>
+                <div class="nav-icon" title="Shopping Cart">
+                    🛒
+                    <span class="cart-count" id="cartCount">3</span>
+                </div>
+                <div class="nav-icon" title="My Account">👤</div>
+            </div>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Shop by Category</h1>
+            <p class="hero-subtitle">Discover amazing products across all our carefully curated categories</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Products</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Brands</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Search Section -->
+        <div class="search-section animate-on-scroll">
+            <div class="search-container">
+                <div class="search-icon">🔍</div>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search categories..."
+                    oninput="handleSearch(this.value)"
+                    onfocus="showSuggestions()"
+                    onblur="hideSuggestions()"
+                >
+                <div class="search-suggestions" id="searchSuggestions">
+                    <div class="suggestion-item" onclick="selectCategory('fashion')">Fashion & Clothing</div>
+                    <div class="suggestion-item" onclick="selectCategory('electronics')">Electronics & Gadgets</div>
+                    <div class="suggestion-item" onclick="selectCategory('home')">Home & Living</div>
+                    <div class="suggestion-item" onclick="selectCategory('beauty')">Beauty & Personal Care</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="categories-container">
+            <h2 class="page-title animate-on-scroll">All Categories</h2>
+            <p class="page-subtitle animate-on-scroll">Find exactly what you're looking for in our comprehensive collection</p>
+            
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Featured Categories -->
+        <section class="featured-section animate-on-scroll">
+            <div class="featured-content">
+                <h2 class="featured-title">Featured Categories</h2>
+                <p class="featured-subtitle">Our most popular categories with exclusive deals and new arrivals</p>
+                
+                <div class="featured-grid">
+                    <div class="featured-card" onclick="navigateToCategory('fashion')">
+                        <span class="featured-icon">👗</span>
+                        <h3>Fashion Week</h3>
+                        <p>Get up to 40% off on trending fashion items. Limited time offer!</p>
+                        <button class="featured-btn">Shop Now</button>
+                    </div>
+                    
+                    <div class="featured-card" onclick="navigateToCategory('electronics')">
+                        <span class="featured-icon">📱</span>
+                        <h3>Tech Sale</h3>
+                        <p>Latest gadgets and electronics with amazing discounts. Don't miss out!</p>
+                        <button class="featured-btn">Explore</button>
+                    </div>
+                    
+                    <div class="featured-card" onclick="navigateToCategory('home')">
+                        <span class="featured-icon">🏠</span>
+                        <h3>Home Makeover</h3>
+                        <p>Transform your space with our premium home decor and furniture collection.</p>
+                        <button class="featured-btn">Discover</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopVibe</h3>
+                <p>Your ultimate shopping destination for premium quality products at unbeatable prices. We're committed to providing the best shopping experience.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopVibe. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <script src="../../shared/analytics.js"></script>
+    <script src="category.js"></script>
+</body>
+</html>

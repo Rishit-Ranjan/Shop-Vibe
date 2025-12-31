@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShopEase | Categories</title>
+    <link rel="stylesheet" href="category.css" />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo" onclick="window.location.href='../home page/home.html'" style="cursor: pointer;">ShopVibe
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../home page/home.html">Home</a></li>
+                <li><a href="../products/products.html">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="../contact us/contact-us.html">Contact</a></li>
+                <li><a href="../cart/cart.html">Cart 🛒</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Category Banner -->
+    <section class="category-banner">
+        <h1>Shop by Categories</h1>
+        <p>Explore a wide range of categories to find exactly what you need.</p>
+    </section>
+
+    <!-- Category List -->
+    <section class="category-list">
+        <div class="category-card">
+            <img src="images/category-electronics.jpg" alt="Electronics" />
+            <h3>Electronics</h3>
+            <p>Discover the latest in mobile, laptops, and accessories.</p>
+        </div>
+
+        <div class="category-card">
+            <img src="images/category-fashion.jpg" alt="Fashion" />
+            <h3>Fashion</h3>
+            <p>Trendy and stylish clothing and accessories for all seasons.</p>
+        </div>
+
+        <div class="category-card">
+            <img src="images/category-home.jpg" alt="Home Decor" />
+            <h3>Home Decor</h3>
+            <p>Beautify your home with unique decor items and furniture.</p>
+        </div>
+
+        <div class="category-card">
+            <img src="images/category-sports.jpg" alt="Sports" />
+            <h3>Sports</h3>
+            <p>Gear up with top-quality sports equipment and apparel.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ShopEase. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button id="scrollTopBtn">↑</button>
+
+    <script>
+        const btn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+            btn.style.display = window.scrollY > 100 ? "block" : "none";
+        };
+        btn.onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+    </script>
+</body>
+
+</html>

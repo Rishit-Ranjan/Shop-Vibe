@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - ShopVibe</title>
+    <link rel="stylesheet" href="user.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../home page/home.html" class="logo">ShopVibe</a>
+
+            <ul class="nav-menu">
+                <li><a href="../home page/home.html">Home</a></li>
+                <li><a href="../category/category.html">Categories</a></li>
+                <li><a href="../products/products.html">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="../contact us/contact-us.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="nav-icon" title="Search" onclick="window.location.href='../search/search.html'"
+                    style="cursor: pointer;">🔍</div>
+                <div class="nav-icon" title="Wishlist" onclick="window.location.href='../whishlist page/wishlist.html'"
+                    style="cursor: pointer;">❤️</div>
+                <div class="nav-icon" title="Shopping Cart" onclick="window.location.href='../cart/cart.html'"
+                    style="cursor: pointer;">
+                    🛒
+                    <span class="cart-count" id="cartCount">3</span>
+                </div>
+                <div class="nav-icon active" title="My Account" onclick="window.location.href='user.html'"
+                    style="cursor: pointer;">👤</div>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Account Sidebar -->
+        <aside class="account-sidebar">
+            <div class="user-profile">
+                <div class="profile-avatar" onclick="uploadAvatar()">👤</div>
+                <div class="user-name">John Doe</div>
+                <div class="user-email">john.doe@email.com</div>
+            </div>
+
+            <nav class="account-menu">
+                <div class="menu-item">
+                    <a href="#" class="menu-link active" onclick="showSection('overview')">
+                        <span class="menu-icon">📊</span>
+                        Account Overview
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('profile')">
+                        <span class="menu-icon">👤</span>
+                        Edit Profile
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('orders')">
+                        <span class="menu-icon">📦</span>
+                        Order History
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('addresses')">
+                        <span class="menu-icon">📍</span>
+                        Address Book
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('security')">
+                        <span class="menu-icon">🔒</span>
+                        Security Settings
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('preferences')">
+                        <span class="menu-icon">⚙️</span>
+                        Preferences
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="#" class="menu-link" onclick="logout()">
+                        <span class="menu-icon">🚪</span>
+                        Sign Out
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="account-content">
+            <!-- Account Overview Section -->
+            <div id="overview" class="content-section active">
+                <div class="content-header">
+                    <h1 class="content-title">Account Overview</h1>
+                    <p class="content-subtitle">Welcome back! Here's what's happening with your account.</p>
+                </div>
+
+                <div class="content-body">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-icon">📦</span>
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Total Orders</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">💰</span>
+                            <div class="stat-number">$1,247</div>
+                            <div class="stat-label">Total Spent</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">❤️</span>
+                            <div class="stat-number">24</div>
+                            <div class="stat-label">Wishlist Items</div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-icon">⭐</span>
+                            <div class="stat-number">4.8</div>
+                            <div class="stat-label">Average Rating</div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-title">Recent Orders</h3>
+                        <div id="recentOrders">
+                            <!-- Recent orders will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Section -->
+            <div id="profile" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">Edit Profile</h1>
+                    <p class="content-subtitle">Update your personal information and preferences.</p>
+                </div>
+
+                <div class="content-body">
+                    <form id="profileForm" onsubmit="saveProfile(event)">
+                        <div class="form-section">
+                            <h3 class="section-title">Personal Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-input" id="firstName" value="John" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-input" id="lastName" value="Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-input" id="email" value="john.doe@email.com"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-input" id="phone" value="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-input" id="dob" value="1990-01-15">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Gender</label>
+                                    <select class="form-input form-select" id="gender">
+                                        <option value="">Select Gender</option>
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="section-title">Bio & Preferences</h3>
+                            <div class="form-group">
+                                <label class="form-label">About Me</label>
+                                <textarea class="form-input form-textarea" id="bio"
+                                    placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Preferred Language</label>
+                                    <select class="form-input form-select" id="language">
+                                        <option value="en" selected>English</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="fr">French</option>
+                                        <option value="de">German</option>
+                                        <option value="it">Italian</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Currency</label>
+                                    <select class="form-input form-select" id="currency">
+                                        <option value="USD" selected>USD ($)</option>
+                                        <option value="EUR">EUR (€)</option>
+                                        <option value="GBP">GBP (£)</option>
+                                        <option value="CAD">CAD ($)</option>
+                                        <option value="AUD">AUD ($)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary" onclick="saveProfile(event)">Save Changes</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order History Section -->
+            <div id="orders" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">Order History</h1>
+                    <p class="content-subtitle">View and manage all your orders.</p>
+                </div>
+
+                <div class="content-body">
+                    <div id="ordersList">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Book Section -->
+            <div id="addresses" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">Address Book</h1>
+                    <p class="content-subtitle">Manage your shipping and billing addresses.</p>
+                </div>
+
+                <div class="content-body">
+                    <div class="address-grid">
+                        <div class="address-card default">
+                            <div class="address-label">Default</div>
+                            <div class="address-name">John Doe</div>
+                            <div class="address-text">
+                                123 Main Street<br>
+                                Apartment 4B<br>
+                                New York, NY 10001<br>
+                                United States<br>
+                                Phone: +1 (555) 123-4567
+                            </div>
+                            <div class="address-actions">
+                                <button class="address-btn" onclick="editAddress(1)">Edit</button>
+                                <button class="address-btn" onclick="deleteAddress(1)">Delete</button>
+                            </div>
+                        </div>
+
+                        <div class="address-card">
+                            <div class="address-label">Work</div>
+                            <div class="address-name">John Doe</div>
+                            <div class="address-text">
+                                456 Business Ave<br>
+                                Suite 100<br>
+                                New York, NY 10005<br>
+                                United States<br>
+                                Phone: +1 (555) 987-6543
+                            </div>
+                            <div class="address-actions">
+                                <button class="address-btn" onclick="setDefault(2)">Set Default</button>
+                                <button class="address-btn" onclick="editAddress(2)">Edit</button>
+                                <button class="address-btn" onclick="deleteAddress(2)">Delete</button>
+                            </div>
+                        </div>
+
+                        <button class="add-address-btn" onclick="addNewAddress()">
+                            <span style="font-size: 2rem;">➕</span>
+                            Add New Address
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Settings Section -->
+            <div id="security" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">Security Settings</h1>
+                    <p class="content-subtitle">Manage your account security and privacy settings.</p>
+                </div>
+
+                <div class="content-body">
+                    <div class="security-item">
+                        <div class="security-info">
+                            <div class="security-title">Password</div>
+                            <div class="security-description">Last changed 3 months ago. Use a strong password to keep
+                                your account secure.</div>
+                        </div>
+                        <div class="security-action">
+                            <button class="action-btn" onclick="changePassword()">Change Password</button>
+                        </div>
+                    </div>
+
+                    <div class="security-item">
+                        <div class="security-info">
+                            <div class="security-title">Two-Factor Authentication</div>
+                            <div class="security-description">Add an extra layer of security to your account with 2FA.
+                            </div>
+                        </div>
+                        <div class="security-action">
+                            <button class="action-btn primary" onclick="setup2FA()">Enable 2FA</button>
+                        </div>
+                    </div>
+
+                    <div class="security-item">
+                        <div class="security-info">
+                            <div class="security-title">Login Activity</div>
+                            <div class="security-description">Review recent login attempts and active sessions.</div>
+                        </div>
+                        <div class="security-action">
+                            <button class="action-btn" onclick="viewLoginActivity()">View Activity</button>
+                        </div>
+                    </div>
+
+                    <div class="security-item">
+                        <div class="security-info">
+                            <div class="security-title">Account Deactivation</div>
+                            <div class="security-description">Temporarily deactivate your account if needed.</div>
+                        </div>
+                        <div class="security-action">
+                            <button class="action-btn" onclick="deactivateAccount()"
+                                style="color: #ff4757; border-color: #ff4757;">Deactivate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences Section -->
+            <div id="preferences" class="content-section">
+                <div class="content-header">
+                    <h1 class="content-title">Preferences</h1>
+                    <p class="content-subtitle">Customize your shopping experience and notification settings.</p>
+                </div>
+
+                <div class="content-body">
+                    <div class="form-section">
+                        <h3 class="section-title">Notification Preferences</h3>
+                        <div class="security-item">
+                            <div class="security-info">
+                                <div class="security-title">Email Notifications</div>
+                                <div class="security-description">Receive order updates, promotions, and account
+                                    notifications via email.</div>
+                            </div>
+                            <div class="security-action">
+                                <label class="switch">
+                                    <input type="checkbox" id="emailNotifications" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-info">
+                                <div class="security-title">SMS Notifications</div>
+                                <div class="security-description">Get text messages for important order updates and
+                                    delivery notifications.</div>
+                            </div>
+                            <div class="security-action">
+                                <label class="switch">
+                                    <input type="checkbox" id="smsNotifications">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="security-item">
+                            <div class="security-info">
+                                <div class="security-title">Marketing Communications</div>
+                                <div class="security-description">Receive promotional offers, deals, and product
+                                    recommendations.</div>
+                            </div>
+                            <div class="security-action">
+                                <label class="switch">
+                                    <input type="checkbox" id="marketingEmails" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="section-title">Shopping Preferences</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Default Shipping Method</label>
+                                <select class="form-input form-select" id="defaultShipping">
+                                    <option value="standard">Standard Shipping (5-7 days)</option>
+                                    <option value="express" selected>Express Shipping (2-3 days)</option>
+                                    <option value="overnight">Overnight Shipping</option>
+                                    <option value="pickup">Store Pickup</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Preferred Categories</label>
+                                <select class="form-input form-select" id="preferredCategories" multiple>
+                                    <option value="fashion" selected>Fashion</option>
+                                    <option value="electronics" selected>Electronics</option>
+                                    <option value="home">Home & Garden</option>
+                                    <option value="books">Books</option>
+                                    <option value="sports">Sports & Outdoors</option>
+                                    <option value="beauty">Beauty & Personal Care</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" onclick="savePreferences()">Save
+                            Preferences</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopVibe</h3>
+                <p>Your ultimate shopping destination for premium quality products at unbeatable prices.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../home page/home.html">Home</a></li>
+                    <li><a href="../category/category.html">Categories</a></li>
+                    <li><a href="../products/products.html">Products</a></li>
+                    <li><a href="../about us/about-us.html">About Us</a></li>
+                    <li><a href="../contact us/contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopVibe. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script src="user.js"></script>
+
+
+</body>
+
+</html>

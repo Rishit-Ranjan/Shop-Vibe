@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products - ShopVibe</title>
+    <link rel="stylesheet" href="../shared/product-placeholders.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        /* Search Header */
+        .search-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 5.5rem 1.2rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        /* Filters Sidebar */
+        .filters-sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .filters-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+
+        .filter-group h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-option:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .filter-option input {
+            margin-right: 0.8rem;
+            transform: scale(1.2);
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .price-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .clear-filters {
+            background: none;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .clear-filters:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .search-results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .results-info {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .sort-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sort-select {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .view-toggle {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .view-btn {
+            padding: 0.8rem 1rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .view-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .products-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .products-grid.list-view .product-image {
+            height: 150px;
+            width: 200px;
+            flex-shrink: 0;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .product-badge.new {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-wishlist:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .product-wishlist.active {
+            color: #e74c3c;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .products-grid.list-view .product-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .products-grid.list-view .product-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .product-title {
+            color: #667eea;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        .rating-count {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .original-price {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .discount-percent {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .quick-view {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .quick-view:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            color: #666;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .pagination button {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e1e5e9;
+            background: white;
+            color: #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover,
+        .pagination button.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 250px 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                position: static;
+                order: 2;
+                margin-top: 2rem;
+            }
+
+            .products-section {
+                order: 1;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .search-results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .products-grid.list-view .product-card {
+                flex-direction: column;
+            }
+
+            .products-grid.list-view .product-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .products-grid.list-view .product-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo" onclick="window.location.href='../home page/home.html'" style="cursor: pointer;">ShopVibe
+            </div>
+            <ul class="nav-links">
+                <li><a href="../home page/home.html">Home</a></li>
+                <li><a href="../products/products.html">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="../contact us/contact-us.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search Header -->
+    <section class="search-header container">
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
+            <button class="search-btn" id="searchBtn">🔍</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content container">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar">
+            <h2 class="filters-title">Filters</h2>
+
+            <!-- Category Filter -->
+            <div class="filter-group" id="categoryFilters">
+                <h3>Category</h3>
+                <div style="color: #666; font-size: 0.9rem;">Loading categories...</div>
+            </div>
+
+            <!-- Brand Filter -->
+            <div class="filter-group">
+                <h3>Brand</h3>
+                <div class="filter-option">
+                    <input type="checkbox" id="sony" name="brand" value="sony" checked>
+                    <label for="sony">Sony (15)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="bose" name="brand" value="bose" checked>
+                    <label for="bose">Bose (12)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="apple" name="brand" value="apple">
+                    <label for="apple">Apple (8)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="samsung" name="brand" value="samsung">
+                    <label for="samsung">Samsung (10)</label>
+                </div>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-group">
+                <h3>Price Range</h3>
+                <div class="price-range">
+                    <span>$</span>
+                    <input type="number" class="price-input" id="minPrice" placeholder="Min" value="50">
+                    <span>-</span>
+                    <span>$</span>
+                    <input type="number" class="price-input" id="maxPrice" placeholder="Max" value="500">
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="under50" name="priceRange" value="under50">
+                    <label for="under50">Under $50 (5)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="50to100" name="priceRange" value="50-100" checked>
+                    <label for="50to100">$50 - $100 (18)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="100to200" name="priceRange" value="100-200" checked>
+                    <label for="100to200">$100 - $200 (25)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="over200" name="priceRange" value="over200" checked>
+                    <label for="over200">Over $200 (15)</label>
+                </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="filter-group">
+                <h3>Customer Rating</h3>
+                <div class="filter-option">
+                    <input type="checkbox" id="5stars" name="rating" value="5" checked>
+                    <label for="5stars">⭐⭐⭐⭐⭐ & Up (35)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="4stars" name="rating" value="4" checked>
+                    <label for="4stars">⭐⭐⭐⭐☆ & Up (52)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="3stars" name="rating" value="3">
+                    <label for="3stars">⭐⭐⭐☆☆ & Up (68)</label>
+                </div>
+            </div>
+
+            <!-- Availability -->
+            <div class="filter-group">
+                <h3>Availability</h3>
+                <div class="filter-option">
+                    <input type="checkbox" id="instock" name="availability" value="instock" checked>
+                    <label for="instock">In Stock (58)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="onsale" name="availability" value="onsale" checked>
+                    <label for="onsale">On Sale (23)</label>
+                </div>
+                <div class="filter-option">
+                    <input type="checkbox" id="freeshipping" name="availability" value="freeshipping">
+                    <label for="freeshipping">Free Shipping (41)</label>
+                </div>
+            </div>
+
+            <button class="clear-filters" id="clearFilters">Clear All Filters</button>
+        </aside>
+
+        <!-- Products Section -->
+        <main class="products-section">
+            <div class="search-results-header">
+                <div class="results-info">
+                    Showing <span id="resultsCount">6</span> results for "<span id="searchTerm">wireless
+                        headphones</span>"
+                </div>
+
+                <div class="sort-controls">
+                    <label for="sortSelect">Sort by:</label>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="relevance">Relevance</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Customer Rating</option>
+                        <option value="newest">Newest First</option>
+                        <option value="bestseller">Best Sellers</option>
+                    </select>
+
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="gridView">⊞</button>
+                        <button class="view-btn" id="listView">☰</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Product cards will be dynamically generated here -->
+            </div>
+
+            <div class="pagination" id="pagination">
+                <button disabled>Previous</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>Next</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sample product data
+        const sampleProducts = [
+            {
+                id: 1,
+                title: "Sony WH-1000XM5 Wireless Headphones",
+                price: 299.99,
+                originalPrice: 349.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                rating: 4.8,
+                reviews: 1247,
+                category: "electronics",
+                brand: "sony",
+                badge: "Sale",
+                description: "Industry-leading noise canceling with Dual Noise Sensor technology. Up to 30-hour battery life with quick charge.",
+                inStock: true,
+                onSale: true,
+                freeShipping: true
+            },
+            {
+                id: 2,
+                title: "Bose QuietComfort 45 Headphones",
+                price: 279.99,
+                originalPrice: null,
+                image: "https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                rating: 4.7,
+                reviews: 892,
+                category: "audio",
+                brand: "bose",
+                badge: null,
+                description: "Quiet comfort meets premium sound quality. 24-hour battery life and comfortable design for all-day wear.",
+                inStock: true,
+                onSale: false,
+                freeShipping: true
+            },
+            {
+                id: 3,
+                title: "Apple AirPods Pro (2nd Generation)",
+                price: 199.99,
+                originalPrice: 249.99,
+                image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                rating: 4.6,
+                reviews: 2156,
+                category: "audio",
+                brand: "apple",
+                badge: "New",
+                description: "Up to 2x more Active Noise Cancellation. Adaptive Transparency. Personalized Spatial Audio with dynamic head tracking.",
+                inStock: true,
+                onSale: true,
+                freeShipping: false
+            },
+            {
+                id: 4,
+                title: "Samsung Galaxy Buds2 Pro",
+                price: 149.99,
+                originalPrice: 179.99,
+                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                rating: 4.4,
+                reviews: 756,
+                category: "audio",
+                brand: "samsung",
+                badge: "Sale",
+                description: "Hi-Fi sound quality with intelligent ANC. Comfortable, secure fit with IPX7 water resistance.",
+                inStock: true,
+                onSale: true,
+                freeShipping: true
+            },
+            {
+                id: 5,
+                title: "Sony WF-1000XM4 True Wireless",
+                price: 199.99,
+                originalPrice: null,
+                image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                rating: 4.5,
+                reviews: 1089,
+                category: "electronics",
+                brand: "sony",
+                badge: null,
+                description: "Industry-leading noise canceling truly wireless earbuds with exceptional sound quality and long battery life.",
+                inStock: true,
+                onSale: false,
+                freeShipping: true
+            },
+            {
+                id: 6,
+                title: "Bose SoundLink Revolve+ II",
+                price: 249.99,
+                originalPrice: 299.99,
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                rating: 4.6,
+                reviews: 634,
+                category: "audio",
+                brand: "bose",
+                badge: "Sale",
+                description: "Portable Bluetooth speaker with 360° sound, water-resistant design, and up to 17 hours of battery life.",
+                inStock: true,
+                onSale: true,
+                freeShipping: false
+            }
+        ];
+
+        $(document).ready(function () {
+            let currentProducts = [...sampleProducts];
+            let isGridView = true;
+            let wishlistItems = new Set();
+
+            // Initialize page
+            renderProducts(currentProducts);
+            updateResultsCount(currentProducts.length);
+
+            // Search functionality
+            $('#searchBtn').on('click', performSearch);
+            $('#searchInput').on('keypress', function (e) {
+                if (e.which === 13) {
+                    performSearch();
+                }
+            });
+
+            // View toggle
+            $('#gridView').on('click', function () {
+                isGridView = true;
+                $(this).addClass('active');
+                $('#listView').removeClass('active');
+                $('#productsGrid').removeClass('list-view');
+            });
+
+            $('#listView').on('click', function () {
+                isGridView = false;
+                $(this).addClass('active');
+                $('#gridView').removeClass('active');
+                $('#productsGrid').addClass('list-view');
+            });
+
+            // Sort functionality
+            $('#sortSelect').on('change', function () {
+                const sortBy = $(this).val();
+                sortProducts(sortBy);
+            });
+
+            // Filter functionality
+            $('input[type="checkbox"]').on('change', applyFilters);
+            $('#minPrice, #maxPrice').on('input', applyFilters);
+
+            // Clear filters
+            $('#clearFilters').on('click', clearAllFilters);
+
+            // Wishlist functionality
+            $(document).on('click', '.product-wishlist', function (e) {
+                e.preventDefault();
+                const productId = $(this).data('product-id');
+                toggleWishlist(productId, $(this));
+            });
+
+            // Add to cart functionality
+            $(document).on('click', '.add-to-cart', function (e) {
+                e.preventDefault();
+                const productId = $(this).data('product-id');
+                addToCart(productId);
+            });
+
+            // Quick view functionality
+            $(document).on('click', '.quick-view', function (e) {
+                e.preventDefault();
+                const productId = $(this).data('product-id');
+                showQuickView(productId);
+            });
+
+            // Functions
+            function performSearch() {
+                const searchTerm = $('#searchInput').val().toLowerCase().trim();
+                $('#searchTerm').text(searchTerm || 'all products');
+
+                if (!searchTerm) {
+                    currentProducts = [...sampleProducts];
+                } else {
+                    currentProducts = sampleProducts.filter(product =>
+                        product.title.toLowerCase().includes(searchTerm) ||
+                        product.description.toLowerCase().includes(searchTerm) ||
+                        product.brand.toLowerCase().includes(searchTerm) ||
+                        product.category.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                applyFilters();
+            }
+
+            function sortProducts(sortBy) {
+                let sortedProducts = [...currentProducts];
+
+                switch (sortBy) {
+                    case 'price-low':
+                        sortedProducts.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        sortedProducts.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'rating':
+                        sortedProducts.sort((a, b) => b.rating - a.rating);
+                        break;
+                    case 'newest':
+                        // Assuming products with 'New' badge are newest
+                        sortedProducts.sort((a, b) => {
+                            if (a.badge === 'New' && b.badge !== 'New') return -1;
+                            if (b.badge === 'New' && a.badge !== 'New') return 1;
+                            return b.id - a.id; // Fallback to ID for demo
+                        });
+                        break;
+                    case 'bestseller':
+                        sortedProducts.sort((a, b) => b.reviews - a.reviews);
+                        break;
+                    default: // relevance
+                        // Keep original order for relevance
+                        break;
+                }
+
+                currentProducts = sortedProducts;
+                renderProducts(currentProducts);
+            }
+
+            function applyFilters() {
+                let filteredProducts = [...sampleProducts];
+
+                // Apply search filter first
+                const searchTerm = $('#searchInput').val().toLowerCase().trim();
+                if (searchTerm) {
+                    filteredProducts = filteredProducts.filter(product =>
+                        product.title.toLowerCase().includes(searchTerm) ||
+                        product.description.toLowerCase().includes(searchTerm) ||
+                        product.brand.toLowerCase().includes(searchTerm) ||
+                        product.category.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                // Category filters
+                const selectedCategories = $('input[name="category"]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if (selectedCategories.length > 0) {
+                    filteredProducts = filteredProducts.filter(product =>
+                        selectedCategories.includes(product.category)
+                    );
+                }
+
+                // Brand filters
+                const selectedBrands = $('input[name="brand"]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if (selectedBrands.length > 0) {
+                    filteredProducts = filteredProducts.filter(product =>
+                        selectedBrands.includes(product.brand)
+                    );
+                }
+
+                // Price range filters
+                const minPrice = parseFloat($('#minPrice').val()) || 0;
+                const maxPrice = parseFloat($('#maxPrice').val()) || 999999;
+
+                filteredProducts = filteredProducts.filter(product =>
+                    product.price >= minPrice && product.price <= maxPrice
+                );
+
+                // Price range checkboxes
+                const selectedPriceRanges = $('input[name="priceRange"]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if (selectedPriceRanges.length > 0) {
+                    filteredProducts = filteredProducts.filter(product => {
+                        return selectedPriceRanges.some(range => {
+                            switch (range) {
+                                case 'under50': return product.price < 50;
+                                case '50-100': return product.price >= 50 && product.price <= 100;
+                                case '100-200': return product.price >= 100 && product.price <= 200;
+                                case 'over200': return product.price > 200;
+                                default: return true;
+                            }
+                        });
+                    });
+                }
+
+                // Rating filters
+                const selectedRatings = $('input[name="rating"]:checked').map(function () {
+                    return parseFloat($(this).val());
+                }).get();
+
+                if (selectedRatings.length > 0) {
+                    const minRating = Math.min(...selectedRatings);
+                    filteredProducts = filteredProducts.filter(product =>
+                        product.rating >= minRating
+                    );
+                }
+
+                // Availability filters
+                const availabilityFilters = $('input[name="availability"]:checked').map(function () {
+                    return $(this).val();
+                }).get();
+
+                if (availabilityFilters.length > 0) {
+                    filteredProducts = filteredProducts.filter(product => {
+                        return availabilityFilters.every(filter => {
+                            switch (filter) {
+                                case 'instock': return product.inStock;
+                                case 'onsale': return product.onSale;
+                                case 'freeshipping': return product.freeShipping;
+                                default: return true;
+                            }
+                        });
+                    });
+                }
+
+                currentProducts = filteredProducts;
+                renderProducts(currentProducts);
+                updateResultsCount(currentProducts.length);
+            }
+
+            function renderProducts(products) {
+                const grid = $('#productsGrid');
+
+                if (products.length === 0) {
+                    grid.html(`
+                        <div class="no-results">
+                            <h3>No products found</h3>
+                            <p>Try adjusting your filters or search terms</p>
+                        </div>
+                    `);
+                    return;
+                }
+
+                const productsHtml = products.map(product => {
+                    const discount = product.originalPrice ?
+                        Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
+
+                    const stars = '★'.repeat(Math.floor(product.rating)) +
+                        '☆'.repeat(5 - Math.floor(product.rating));
+
+                    const wishlistClass = wishlistItems.has(product.id) ? 'active' : '';
+                    const heartIcon = wishlistItems.has(product.id) ? '❤️' : '🤍';
+
+                    return `
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="${product.image}" alt="${product.title}" loading="lazy">
+                                ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+                                <button class="product-wishlist ${wishlistClass}" data-product-id="${product.id}">${heartIcon}</button>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-details">
+                                    <h3 class="product-title">${product.title}</h3>
+                                    <div class="product-rating">
+                                        <span class="stars">${stars}</span>
+                                        <span class="rating-count">(${product.reviews})</span>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="current-price">${product.price}</span>
+                                        ${product.originalPrice ? `<span class="original-price">${product.originalPrice}</span>` : ''}
+                                        ${discount > 0 ? `<span class="discount-percent">${discount}% off</span>` : ''}
+                                    </div>
+                                    <p class="product-description">${product.description}</p>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="add-to-cart" data-product-id="${product.id}">Add to Cart</button>
+                                    <button class="quick-view" data-product-id="${product.id}">Quick View</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                grid.html(productsHtml);
+            }
+
+            function updateResultsCount(count) {
+                $('#resultsCount').text(count);
+            }
+
+            function clearAllFilters() {
+                // Uncheck all checkboxes
+                $('input[type="checkbox"]').prop('checked', false);
+
+                // Clear price inputs
+                $('#minPrice, #maxPrice').val('');
+
+                // Reset search
+                $('#searchInput').val('');
+                $('#searchTerm').text('all products');
+
+                // Reset to all products
+                currentProducts = [...sampleProducts];
+                renderProducts(currentProducts);
+                updateResultsCount(currentProducts.length);
+
+                // Reset sort to relevance
+                $('#sortSelect').val('relevance');
+            }
+
+            function toggleWishlist(productId, buttonElement) {
+                if (wishlistItems.has(productId)) {
+                    wishlistItems.delete(productId);
+                    buttonElement.removeClass('active').text('🤍');
+                } else {
+                    wishlistItems.add(productId);
+                    buttonElement.addClass('active').text('❤️');
+                }
+
+                // Show feedback
+                showNotification(wishlistItems.has(productId) ? 'Added to wishlist!' : 'Removed from wishlist!');
+            }
+
+            function addToCart(productId) {
+                const product = sampleProducts.find(p => p.id === productId);
+                if (product) {
+                    showNotification(`${product.title} added to cart!`);
+                    // Here you would typically update a cart state/API
+                }
+            }
+
+            function showQuickView(productId) {
+                const product = sampleProducts.find(p => p.id === productId);
+                if (product) {
+                    // Simple alert for demo - in real app, would show modal
+                    alert(`Quick View: ${product.title}\n\nPrice: ${product.price}\nRating: ${product.rating}/5\n\n${product.description}`);
+                }
+            }
+
+            function showNotification(message) {
+                // Create and show a temporary notification
+                const notification = $(`
+                    <div style="
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: linear-gradient(45deg, #667eea, #764ba2);
+                        color: white;
+                        padding: 1rem 2rem;
+                        border-radius: 10px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                        z-index: 1000;
+                        font-weight: 500;
+                        transform: translateX(400px);
+                        transition: transform 0.3s ease;
+                    ">${message}</div>
+                `);
+
+                $('body').append(notification);
+
+                // Animate in
+                setTimeout(() => {
+                    notification.css('transform', 'translateX(0)');
+                }, 100);
+
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.css('transform', 'translateX(400px)');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+        });
+    </script>
+
+    <!-- Shared Modules -->
+    <script src="../shared/data-manager.js"></script>
+    <script src="../shared/notifications.js"></script>
+    <script src="../shared/navbar-sync.js"></script>
+    <script src="search.js"></script>
+</body>
+
+</html>

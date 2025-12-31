@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopVibe - Your Ultimate Shopping Destination</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="../shared/product-placeholders.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="home.html" class="logo">ShopVibe</a>
+
+            <ul class="nav-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="../category/category.html">Categories</a></li>
+                <li><a href="../products/products.html">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="../contact us/contact-us.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="nav-icon" onclick="window.location.href='../search/search.html'" style="cursor: pointer;">🔍
+                </div>
+                <div class="nav-icon" onclick="window.location.href='../whishlist page/wishlist.html'"
+                    style="cursor: pointer;">❤️</div>
+                <div class="nav-icon" onclick="window.location.href='../cart/cart.html'" style="cursor: pointer;">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="nav-icon" onclick="window.location.href='../user account/user.html'"
+                    style="cursor: pointer;">👤</div>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="slider-container" id="home">
+        <div class="slider" id="slider">
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Summer Collection 2025</h2>
+                    <p>Discover the latest trends with up to 50% off on selected items</p>
+                    <a href="#" class="cta-btn">Shop Now</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>New Arrivals</h2>
+                    <p>Fresh styles, unbeatable quality. Be the first to experience our newest collection</p>
+                    <a href="#" class="cta-btn">Explore</a>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>Premium Quality</h2>
+                    <p>Crafted with care, designed for life. Premium products at amazing prices</p>
+                    <a href="#" class="cta-btn">Discover</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-nav">
+            <div class="nav-dot active" onclick="currentSlide(1)"></div>
+            <div class="nav-dot" onclick="currentSlide(2)"></div>
+            <div class="nav-dot" onclick="currentSlide(3)"></div>
+        </div>
+    </section>
+
+    <!-- Shop by Category -->
+    <section class="section animate-on-scroll" id="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories-grid">
+            <div class="category-card" onclick="window.location.href='../search/search.html?category=fashion'" style="cursor: pointer;">
+                <div class="category-icon">👕</div>
+                <h3>Fashion</h3>
+                <p>Trendy clothing for all occasions</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='../search/search.html?category=electronics'" style="cursor: pointer;">
+                <div class="category-icon">📱</div>
+                <h3>Electronics</h3>
+                <p>Latest gadgets and tech accessories</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='../search/search.html?category=home'" style="cursor: pointer;">
+                <div class="category-icon">🏠</div>
+                <h3>Home & Living</h3>
+                <p>Beautiful decor and furniture</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='../search/search.html?category=beauty'" style="cursor: pointer;">
+                <div class="category-icon">💄</div>
+                <h3>Beauty</h3>
+                <p>Skincare and makeup essentials</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='../search/search.html?category=sports'" style="cursor: pointer;">
+                <div class="category-icon">⚽</div>
+                <h3>Sports</h3>
+                <p>Equipment for active lifestyle</p>
+            </div>
+            <div class="category-card" onclick="window.location.href='../search/search.html?category=books'" style="cursor: pointer;">
+                <div class="category-icon">📚</div>
+                <h3>Books</h3>
+                <p>Knowledge and entertainment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Products -->
+    <section class="section animate-on-scroll" id="products">
+        <h2 class="section-title">Latest Products</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/products/tshirt.png" alt="Premium Cotton T-Shirt"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h3>Premium Cotton T-Shirt</h3>
+                    <div class="product-price">
+                        $24.99
+                        <span class="old-price">$34.99</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(1)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/products/headphones.png" alt="Wireless Headphones"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h3>Wireless Headphones</h3>
+                    <div class="product-price">
+                        $79.99
+                        <span class="old-price">$99.99</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(2)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/products/running-shoes.png" alt="Running Shoes"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h3>Running Shoes</h3>
+                    <div class="product-price">
+                        $89.99
+                        <span class="old-price">$119.99</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(3)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="../assets/products/smartwatch.png" alt="Smart Watch"
+                        style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h3>Smart Watch</h3>
+                    <div class="product-price">
+                        $199.99
+                        <span class="old-price">$249.99</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart(4)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section animate-on-scroll">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h3>Free Shipping</h3>
+                <p>Free delivery on orders above $50. Fast and reliable shipping worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure Payment</h3>
+                <p>Your payment information is processed securely with 256-bit SSL encryption.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">↩️</div>
+                <h3>Easy Returns</h3>
+                <p>30-day return policy. Not satisfied? Return your item for a full refund.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎧</div>
+                <h3>24/7 Support</h3>
+                <p>Our customer service team is available round the clock to help you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopVibe</h3>
+                <p>Your ultimate shopping destination for premium quality products at unbeatable prices. We're committed
+                    to providing the best shopping experience.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="../category/category.html">Categories</a></li>
+                    <li><a href="../products/products.html">Products</a></li>
+                    <li><a href="../about us/about-us.html">About Us</a></li>
+                    <li><a href="../contact us/contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopVibe. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Shared Modules -->
+    <script src="../shared/analytics.js"></script>
+    <script src="../shared/data-manager.js"></script>
+    <script src="../shared/notifications.js"></script>
+    <script src="../shared/navbar-sync.js"></script>
+    <script src="home.js"></script>
+
+</body>
+
+</html>

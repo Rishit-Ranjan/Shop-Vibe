@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - ShopVibe</title>
+    <link rel="stylesheet" href="wishlist.css">
+    <link rel="stylesheet" href="../shared/product-placeholders.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../home page/home.html" class="logo">ShopVibe</a>
+
+            <ul class="nav-menu">
+                <li><a href="../home page/home.html">Home</a></li>
+                <li><a href="../category/category.html">Categories</a></li>
+                <li><a href="../products/products.html">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="../contact us/contact-us.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="nav-icon" title="Search" onclick="window.location.href='../search/search.html'"
+                    style="cursor: pointer;">🔍</div>
+                <div class="nav-icon active" title="Wishlist" onclick="window.location.href='wishlist.html'"
+                    style="cursor: pointer;">
+                    ❤️
+                    <span class="wishlist-count" id="wishlistCount">8</span>
+                </div>
+                <div class="nav-icon" title="Shopping Cart" onclick="window.location.href='../cart/cart.html'"
+                    style="cursor: pointer;">
+                    🛒
+                    <span class="cart-count" id="cartCount">3</span>
+                </div>
+                <div class="nav-icon" title="My Account" onclick="window.location.href='../user account/user.html'"
+                    style="cursor: pointer;">👤</div>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../home page/home.html">Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="../user account/user.html">My Account</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>My Wishlist</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Wishlist Header -->
+        <div class="wishlist-header">
+            <span class="wishlist-icon">💖</span>
+            <h1 class="wishlist-title">My Wishlist</h1>
+            <p class="wishlist-subtitle">Save items you love and never lose track of your favorites</p>
+            <div class="wishlist-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalItems">8</span>
+                    <span class="stat-label">Items Saved</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="totalValue">$642</span>
+                    <span class="stat-label">Total Value</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="onSale">3</span>
+                    <span class="stat-label">On Sale</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wishlist Controls -->
+        <div class="wishlist-controls">
+            <div class="controls-left">
+                <select class="filter-select" id="categoryFilter" onchange="filterByCategory()">
+                    <option value="all">All Categories</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="home">Home & Living</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="sports">Sports</option>
+                </select>
+                <select class="filter-select" id="sortFilter" onchange="sortWishlist()">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A to Z</option>
+                    <option value="rating">Highest Rated</option>
+                </select>
+            </div>
+            <div class="controls-right">
+                <div class="view-toggle">
+                    <button class="view-btn active" id="gridViewBtn" onclick="setViewMode('grid')"
+                        title="Grid View">⊞</button>
+                    <button class="view-btn" id="listViewBtn" onclick="setViewMode('list')" title="List View">☰</button>
+                </div>
+                <div class="bulk-actions">
+                    <button class="bulk-btn" onclick="addAllToCart()">Add All to Cart</button>
+                    <button class="bulk-btn danger" onclick="clearWishlist()">Clear All</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wishlist Grid -->
+        <div class="wishlist-grid" id="wishlistGrid">
+            <!-- Wishlist items will be dynamically loaded here -->
+        </div>
+
+        <!-- Empty Wishlist -->
+        <div class="empty-wishlist" id="emptyWishlist">
+            <div class="empty-icon">💔</div>
+            <h2 class="empty-title">Your wishlist is empty</h2>
+            <p class="empty-message">Start adding products you love to keep track of them and purchase later. Your saved
+                items will appear here.</p>
+            <button class="browse-products-btn" onclick="browseProducts()">Browse Products</button>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <button class="page-btn" id="prevBtn" onclick="changePage(-1)">« Previous</button>
+            <button class="page-btn active" onclick="goToPage(1)">1</button>
+            <button class="page-btn" onclick="goToPage(2)">2</button>
+            <button class="page-btn" onclick="goToPage(3)">3</button>
+            <button class="page-btn" id="nextBtn" onclick="changePage(1)">Next »</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopVibe</h3>
+                <p>Your ultimate shopping destination for premium quality products at unbeatable prices. We're committed
+                    to providing the best shopping experience.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../home page/home.html">Home</a></li>
+                    <li><a href="../category/category.html">Categories</a></li>
+                    <li><a href="../products/products.html">Products</a></li>
+                    <li><a href="../about us/about-us.html">About Us</a></li>
+                    <li><a href="../contact us/contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopVibe. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Shared Modules -->
+    <script src="../shared/data-manager.js"></script>
+    <script src="../shared/notifications.js"></script>
+    <script src="../shared/navbar-sync.js"></script>
+    <script src="wishlist.js"></script>
+</body>
+
+</html>

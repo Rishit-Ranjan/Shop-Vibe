@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Cotton T-Shirt - ShopVibe</title>
+    <link rel="stylesheet" href="product-view.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../home page/home.html" class="logo">ShopVibe</a>
+
+            <ul class="nav-menu">
+                <li><a href="../../home page/home.html">Home</a></li>
+                <li><a href="../../category/category.html">Categories</a></li>
+                <li><a href="../products.html">Products</a></li>
+                <li><a href="../../about us/about-us.html">About</a></li>
+                <li><a href="../../contact us/contact-us.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="nav-icon" title="Search" onclick="window.location.href='../../search/search.html'"
+                    style="cursor: pointer;">🔍</div>
+                <div class="nav-icon" title="Wishlist"
+                    onclick="window.location.href='../../whishlist page/wishlist.html'" style="cursor: pointer;">❤️
+                </div>
+                <div class="nav-icon" title="Shopping Cart" onclick="window.location.href='../../cart/cart.html'"
+                    style="cursor: pointer;">
+                    🛒
+                    <span class="cart-count" id="cartCount">3</span>
+                </div>
+                <div class="nav-icon" title="My Account" onclick="window.location.href='../../user account/user.html'"
+                    style="cursor: pointer;">👤</div>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <nav class="breadcrumb-nav">
+                <a href="../../home page/home.html">Home</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="../products.html">Products</a>
+                <span class="breadcrumb-separator">›</span>
+                <a href="../../category/category.html">Fashion</a>
+                <span class="breadcrumb-separator">›</span>
+                <span>Premium Cotton T-Shirt</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Product Container -->
+    <div class="product-container">
+        <!-- Product Images -->
+        <div class="product-images">
+            <div class="main-image-container">
+                <div class="main-image" id="mainImage" onclick="openLightbox()">
+                    👕
+                </div>
+                <div class="image-badges">
+                    <div class="image-badge sale">25% OFF</div>
+                    <div class="image-badge new">Best Seller</div>
+                </div>
+                <button class="image-zoom" onclick="openLightbox()" title="Zoom Image">🔍</button>
+            </div>
+
+            <div class="thumbnail-container">
+                <div class="thumbnail active" onclick="changeMainImage('👕', this)">👕</div>
+                <div class="thumbnail" onclick="changeMainImage('👔', this)">👔</div>
+                <div class="thumbnail" onclick="changeMainImage('🧥', this)">🧥</div>
+                <div class="thumbnail" onclick="changeMainImage('👖', this)">👖</div>
+                <div class="thumbnail" onclick="changeMainImage('👕', this)">👕</div>
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <div class="product-category">Fashion • T-Shirts</div>
+
+            <h1 class="product-title">Premium Cotton T-Shirt</h1>
+
+            <div class="product-rating">
+                <div class="stars-container">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <span class="rating-value">4.8</span>
+                </div>
+                <span class="rating-count">(256 reviews)</span>
+                <a href="#reviews" class="rating-link">Read reviews</a>
+            </div>
+
+            <div class="product-price">
+                <span class="current-price">$24.99</span>
+                <span class="old-price">$34.99</span>
+                <div class="discount-badge">25% OFF</div>
+                <div class="savings">You save $10.00</div>
+            </div>
+
+            <div class="product-description">
+                <h3 class="description-title">Description</h3>
+                <p class="description-text">
+                    Experience ultimate comfort with our Premium Cotton T-Shirt. Made from 100% organic cotton, this
+                    shirt offers superior softness and breathability. Perfect for casual wear, workouts, or lounging at
+                    home.
+                </p>
+                <ul class="description-features">
+                    <li>100% Organic Cotton - Soft and breathable</li>
+                    <li>Pre-shrunk fabric - Maintains shape after washing</li>
+                    <li>Reinforced seams - Built to last</li>
+                    <li>Classic fit - Comfortable for all body types</li>
+                    <li>Easy care - Machine washable</li>
+                    <li>Available in multiple colors and sizes</li>
+                </ul>
+            </div>
+
+            <div class="product-options">
+                <div class="option-group">
+                    <div class="option-label">Size:</div>
+                    <div class="size-options">
+                        <div class="size-option" onclick="selectSize(this)">XS</div>
+                        <div class="size-option" onclick="selectSize(this)">S</div>
+                        <div class="size-option active" onclick="selectSize(this)">M</div>
+                        <div class="size-option" onclick="selectSize(this)">L</div>
+                        <div class="size-option" onclick="selectSize(this)">XL</div>
+                        <div class="size-option" onclick="selectSize(this)">XXL</div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <div class="option-label">Color:</div>
+                    <div class="color-options">
+                        <div class="color-option red active" onclick="selectColor(this)" title="Red"></div>
+                        <div class="color-option blue" onclick="selectColor(this)" title="Blue"></div>
+                        <div class="color-option green" onclick="selectColor(this)" title="Green"></div>
+                        <div class="color-option black" onclick="selectColor(this)" title="Black"></div>
+                        <div class="color-option white" onclick="selectColor(this)" title="White"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quantity-selector">
+                <span class="quantity-label">Quantity:</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10"
+                        onchange="updateQuantity()">
+                    <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                </div>
+            </div>
+
+            <div class="product-actions">
+                <button class="add-to-cart-btn" onclick="addToCart()">
+                    🛒 Add to Cart
+                </button>
+                <button class="buy-now-btn" onclick="buyNow()">
+                    ⚡ Buy Now
+                </button>
+                <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlist()">
+                    🤍
+                </button>
+            </div>
+
+            <div class="product-info">
+                <div class="info-item">
+                    <div class="info-icon">🚚</div>
+                    <div class="info-content">
+                        <h4>Free Shipping</h4>
+                        <p>Free delivery on orders over $50</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">↩️</div>
+                    <div class="info-content">
+                        <h4>Easy Returns</h4>
+                        <p>30-day return policy</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🔒</div>
+                    <div class="info-content">
+                        <h4>Secure Payment</h4>
+                        <p>256-bit SSL encryption</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⚡</div>
+                    <div class="info-content">
+                        <h4>Fast Delivery</h4>
+                        <p>2-3 business days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <div class="section-title">You May Also Like</div>
+        <div class="related-grid">
+            <div class="related-product" onclick="viewProduct(1)">
+                <div class="related-image">🎧</div>
+                <div class="related-info">
+                    <h3>Wireless Headphones</h3>
+                    <div class="related-price">
+                        $79.99
+                        <span class="related-old-price">$99.99</span>
+                    </div>
+                    <div class="related-rating">
+                        <span class="related-stars">⭐⭐⭐⭐⭐</span>
+                        <span>(128)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-product" onclick="viewProduct(2)">
+                <div class="related-image">👟</div>
+                <div class="related-info">
+                    <h3>Running Shoes</h3>
+                    <div class="related-price">
+                        $89.99
+                        <span class="related-old-price">$119.99</span>
+                    </div>
+                    <div class="related-rating">
+                        <span class="related-stars">⭐⭐⭐⭐⭐</span>
+                        <span>(89)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-product" onclick="viewProduct(3)">
+                <div class="related-image">⌚</div>
+                <div class="related-info">
+                    <h3>Smart Watch</h3>
+                    <div class="related-price">
+                        $199.99
+                        <span class="related-old-price">$249.99</span>
+                    </div>
+                    <div class="related-rating">
+                        <span class="related-stars">⭐⭐⭐⭐⭐</span>
+                        <span>(345)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="related-product" onclick="viewProduct(4)">
+                <div class="related-image">👖</div>
+                <div class="related-info">
+                    <h3>Designer Jeans</h3>
+                    <div class="related-price">
+                        $59.99
+                        <span class="related-old-price">$79.99</span>
+                    </div>
+                    <div class="related-rating">
+                        <span class="related-stars">⭐⭐⭐⭐⭐</span>
+                        <span>(67)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <div class="lightbox-image" id="lightboxImage">👕</div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopVibe</h3>
+                <p>Your ultimate shopping destination for premium quality products at unbeatable prices. We're committed
+                    to providing the best shopping experience.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../home page/home.html">Home</a></li>
+                    <li><a href="../../category/category.html">Categories</a></li>
+                    <li><a href="../products.html">Products</a></li>
+                    <li><a href="../../about us/about-us.html">About Us</a></li>
+                    <li><a href="../../contact us/contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopVibe. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <script src="product-view.js"></script>
+</body>
+
+</html>

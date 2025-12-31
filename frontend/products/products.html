@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopVibe</title>
+    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="../shared/product-placeholders.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../home page/home.html" class="logo">ShopVibe</a>
+
+            <ul class="nav-menu">
+                <li><a href="../home page/home.html">Home</a></li>
+                <li><a href="../category/category.html">Categories</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="../about us/about-us.html">About</a></li>
+                <li><a href="../contact us/contact-us.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <div class="nav-icon" title="Search" onclick="window.location.href='../search/search.html'"
+                    style="cursor: pointer;">🔍</div>
+                <div class="nav-icon" title="Wishlist" onclick="window.location.href='../whishlist page/wishlist.html'"
+                    style="cursor: pointer;">❤️</div>
+                <div class="nav-icon" title="Shopping Cart" onclick="window.location.href='../cart/cart.html'"
+                    style="cursor: pointer;">
+                    🛒
+                    <span class="cart-count" id="cartCount">3</span>
+                </div>
+                <div class="nav-icon" title="My Account" onclick="window.location.href='../user account/user.html'"
+                    style="cursor: pointer;">👤</div>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Filters Overlay -->
+    <div class="mobile-filters-overlay" id="mobileFiltersOverlay" onclick="closeMobileFilters()"></div>
+
+    <div class="mobile-filters-content" id="mobileFiltersContent">
+        <div class="mobile-filters-header">
+            <h3>Filters</h3>
+            <button class="mobile-filters-close" onclick="closeMobileFilters()">✕</button>
+        </div>
+        <!-- Filters content will be cloned here -->
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar" id="filtersSidebar">
+            <!-- Categories Filter -->
+            <div class="filter-section">
+                <h3 class="filter-title">Categories</h3>
+                <div class="category-list" id="categoryList">
+                    <div class="category-item active" data-category="all">
+                        <div class="category-checkbox"></div>
+                        <div class="category-label">
+                            <span>Electronics</span>
+                            <span class="product-count">6</span>
+                        </div>
+                    </div>
+                    <div class="category-item" data-category="home">
+                        <div class="category-checkbox"></div>
+                        <div class="category-label">
+                            <span>Home & Living</span>
+                            <span class="product-count">4</span>
+                        </div>
+                    </div>
+                    <div class="category-item" data-category="beauty">
+                        <div class="category-checkbox"></div>
+                        <div class="category-label">
+                            <span>Beauty</span>
+                            <span class="product-count">3</span>
+                        </div>
+                    </div>
+                    <div class="category-item" data-category="sports">
+                        <div class="category-checkbox"></div>
+                        <div class="category-label">
+                            <span>Sports</span>
+                            <span class="product-count">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Range Filter -->
+            <div class="filter-section">
+                <h3 class="filter-title">Price Range</h3>
+                <div class="price-range-container">
+                    <input type="range" class="price-range" id="minPrice" min="0" max="500" value="0"
+                        oninput="updatePriceRange()">
+                    <input type="range" class="price-range" id="maxPrice" min="0" max="500" value="500"
+                        oninput="updatePriceRange()">
+                    <div class="price-labels">
+                        <span id="minPriceLabel">$0</span>
+                        <span id="maxPriceLabel">$500</span>
+                    </div>
+                    <div class="price-input-group">
+                        <input type="number" class="price-input" id="minPriceInput" placeholder="Min" min="0" max="500"
+                            value="0" onchange="updateFromInput()">
+                        <input type="number" class="price-input" id="maxPriceInput" placeholder="Max" min="0" max="500"
+                            value="500" onchange="updateFromInput()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clear Filters -->
+            <button class="clear-filters" onclick="clearAllFilters()">
+                Clear All Filters
+            </button>
+        </aside>
+
+        <!-- Products Container -->
+        <main class="products-container">
+            <!-- Mobile Filters Toggle -->
+            <button class="mobile-filters-toggle" onclick="openMobileFilters()">
+                🔍 Filters & Sort
+            </button>
+
+            <!-- Products Header -->
+            <div class="products-header">
+                <div class="products-count">
+                    Showing <strong id="productsShowing">1-24</strong> of <strong id="productsTotal">24</strong>
+                    products
+                </div>
+                <div class="header-controls">
+                    <select class="sort-dropdown" id="sortDropdown" onchange="sortProducts()">
+                        <option value="featured">Sort by: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                    <div class="view-toggle">
+                        <button class="view-btn active" id="gridViewBtn" onclick="setViewMode('grid')"
+                            title="Grid View">⊞</button>
+                        <button class="view-btn" id="listViewBtn" onclick="setViewMode('list')"
+                            title="List View">☰</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <p>Loading products...</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No products found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <button class="page-btn" id="prevBtn" onclick="changePage(-1)">« Previous</button>
+                <button class="page-btn active" onclick="goToPage(1)">1</button>
+                <button class="page-btn" onclick="goToPage(2)">2</button>
+                <button class="page-btn" onclick="goToPage(3)">3</button>
+                <button class="page-btn" id="nextBtn" onclick="changePage(1)">Next »</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About ShopVibe</h3>
+                <p>Your ultimate shopping destination for premium quality products at unbeatable prices. We're committed
+                    to providing the best shopping experience.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../home page/home.html">Home</a></li>
+                    <li><a href="../category/category.html">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="../about us/about-us.html">About Us</a></li>
+                    <li><a href="../contact us/contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShopVibe. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Shared Modules -->
+    <script src="../shared/data-manager.js"></script>
+    <script src="../shared/notifications.js"></script>
+    <script src="../shared/navbar-sync.js"></script>
+    <script src="products.js"></script>
+</body>
+
+</html>

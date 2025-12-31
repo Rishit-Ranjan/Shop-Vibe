@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Thank You!</title>
+    <link rel="stylesheet" href="order-confirmation.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header id="navbar-placeholder"></header>
+    <div class="container">
+        <div class="header">
+            <div class="success-icon">
+                <div class="checkmark">✓</div>
+            </div>
+            <h1>🎉 Order Confirmed!</h1>
+            <p>Thank you for your purchase. Your order has been successfully placed.</p>
+
+            <div class="progress-bar">
+                <div class="progress-step active">
+                    <div class="step-circle active">1</div>
+                    <span>Cart</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-circle active">2</div>
+                    <span>Checkout</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-circle active">3</div>
+                    <span>Payment</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-circle active">4</div>
+                    <span>Complete</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="confirmation-content">
+            <!-- Order Confirmation Message -->
+            <div class="confirmation-message">
+                <h2>🛍️ Your Order is Confirmed!</h2>
+                <p>We've received your order and are preparing it for shipment. You'll receive a confirmation email with
+                    tracking details once your order ships. Thank you for choosing our store!</p>
+            </div>
+
+            <!-- Order Details -->
+            <div class="order-details">
+                <!-- Order Number -->
+                <div class="detail-card">
+                    <div class="detail-title">
+                        📋 Order Number
+                    </div>
+                    <div class="order-number" id="orderNumber">ORD-2024-A7X9K2M</div>
+                    <div class="order-date" id="orderDate">Placed on September 10, 2025</div>
+                </div>
+
+                <!-- Order Status -->
+                <div class="detail-card">
+                    <div class="detail-title">
+                        📦 Order Status
+                    </div>
+                    <div class="status-badge" id="orderStatus">
+                        <span>🔄</span>
+                        Processing
+                    </div>
+                    <div class="status-description" id="statusDescription">
+                        Your order is being prepared and will be shipped within 1-2 business days.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <div class="summary-title">
+                    📋 Order Summary
+                </div>
+
+                <div id="orderItems">
+                    <div class="order-item">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop"
+                            alt="Headphones" class="item-image">
+                        <div class="item-details">
+                            <div class="item-name">Wireless Bluetooth Headphones</div>
+                            <div class="item-quantity">Qty: 2</div>
+                        </div>
+                        <div class="item-price">$159.98</div>
+                    </div>
+
+                    <div class="order-item">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop"
+                            alt="Smart Watch" class="item-image">
+                        <div class="item-details">
+                            <div class="item-name">Smart Fitness Watch</div>
+                            <div class="item-quantity">Qty: 1</div>
+                        </div>
+                        <div class="item-price">$199.99</div>
+                    </div>
+
+                    <div class="order-item">
+                        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=300&h=300&fit=crop"
+                            alt="Coffee" class="item-image">
+                        <div class="item-details">
+                            <div class="item-name">Premium Coffee Beans</div>
+                            <div class="item-quantity">Qty: 3</div>
+                        </div>
+                        <div class="item-price">$74.97</div>
+                    </div>
+                </div>
+
+                <div class="total-section">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Subtotal:</span>
+                        <span>$434.94</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span>Shipping:</span>
+                        <span>$9.99</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                        <span>Tax (8.5%):</span>
+                        <span>$36.97</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Total Paid:</span>
+                        <span class="total-amount">$481.90</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping Information -->
+            <div class="shipping-info">
+                <div class="shipping-title">
+                    🚚 Shipping Information
+                </div>
+                <div class="shipping-details">
+                    <strong>Shipping Address:</strong><br>
+                    John Doe<br>
+                    123 Main Street<br>
+                    New York, NY 10001<br>
+                    United States
+
+                    <div class="estimated-delivery">
+                        📅 Estimated Delivery: September 14-16, 2025
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="trackOrder()">
+                    📍 Track Your Order
+                </button>
+                <button class="btn btn-secondary" onclick="continueShopping()">
+                    🛒 Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification" id="notification">
+        Email confirmation sent successfully! 📧
+    </div>
+
+    <script src="order-confirmation.js"></script>
+
+    <!-- Shared Modules -->
+    <script src="../shared/data-manager.js"></script>
+    <script src="../shared/notifications.js"></script>
+    <script src="../shared/navbar-sync.js"></script>
+</body>
+
+</html>
